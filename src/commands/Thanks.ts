@@ -8,8 +8,7 @@ import { handleCommandUserErrors } from '../utils/handleCommandUserErrors';
 @ApplyOptions<SubCommandPluginCommandOptions>({
 	aliases: ['dzięki, dzieki, dzięki'],
 	description: 'Komenda do dziękowania osobie za pomoc przy rozwiązaniu problemu lub doradzeniu w jakimś temacie.',
-	cooldownDelay: 60,
-
+	cooldownDelay: 60
 })
 export class ThanksCommand extends SubCommandPluginCommand {
 	public async messageRun(message: Message, args: Args) {
@@ -17,7 +16,6 @@ export class ThanksCommand extends SubCommandPluginCommand {
 			const thanksUser = (await args.pick('member')).user.id;
 			await addPointToUserThanksStats(thanksUser);
 			const thanksMessage = await getThanksMessage(args);
-			console.log(thanksMessage);
 			const messageSource = message.url;
 			const author = message.author.id;
 
@@ -29,7 +27,6 @@ export class ThanksCommand extends SubCommandPluginCommand {
 			});
 			return message.channel.send(content);
 		} catch (e: any) {
-			console.log(e);
 			return message.channel.send(handleCommandUserErrors(e.identifier));
 		}
 	}
@@ -43,7 +40,6 @@ interface ThanksMessage {
 }
 
 const getThanksMessage = async (args: Args) => {
-	console.log(args);
 	if (args.finished) {
 		return '';
 	}
