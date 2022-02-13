@@ -6,7 +6,8 @@ import { addPointToUserThanksStats } from '../prismaUtils/user/prismaUserUtils';
 import { handleCommandUserErrors } from '../utils/handleCommandUserErrors';
 
 @ApplyOptions<SubCommandPluginCommandOptions>({
-	aliases: ['dzięki, dzieki, dzięki'],
+	name: 'dzieki',
+	aliases: ['dzięki'],
 	description: 'Komenda do dziękowania osobie za pomoc przy rozwiązaniu problemu lub doradzeniu w jakimś temacie.',
 	cooldownDelay: 60
 })
