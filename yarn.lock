@@ -161,13 +161,6 @@
   dependencies:
     tslib "^2.3.1"
 
-"@sapphire/prettier-config@^1.2.9":
-  version "1.2.9"
-  resolved "https://registry.npmjs.org/@sapphire/prettier-config/-/prettier-config-1.2.9.tgz"
-  integrity sha512-GEaU2mcsRHpeKNQHCKtQqKqDton7vu+XderNvM+AvPx2bQFZTCQjlCXAZ2D1WSjmJSPIh6f7E5HTG2EufOclzQ==
-  dependencies:
-    prettier "^2.5.1"
-
 "@sapphire/ratelimits@^2.1.10":
   version "2.1.12"
   resolved "https://registry.npmjs.org/@sapphire/ratelimits/-/ratelimits-2.1.12.tgz"

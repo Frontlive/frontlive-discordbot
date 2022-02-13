@@ -9,8 +9,8 @@ import { RandomLoadingMessage } from './constants';
  * const randomEntry = pickRandom([1, 2, 3, 4]) // 1
  */
 export function pickRandom<T>(array: readonly T[]): T {
-	const { length } = array;
-	return array[Math.floor(Math.random() * length)];
+  const { length } = array;
+  return array[Math.floor(Math.random() * length)];
 }
 
 /**
@@ -18,5 +18,9 @@ export function pickRandom<T>(array: readonly T[]): T {
  * @param message The message data for which to send the loading message
  */
 export function sendLoadingMessage(message: Message): Promise<typeof message> {
-	return send(message, { embeds: [new MessageEmbed().setDescription(pickRandom(RandomLoadingMessage)).setColor('#FF0000')] });
+  return send(message, {
+    embeds: [
+      new MessageEmbed().setDescription(pickRandom(RandomLoadingMessage)).setColor('#FF0000'),
+    ],
+  });
 }
