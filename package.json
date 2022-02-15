@@ -37,7 +37,8 @@
   "scripts": {
     "build": "tsc",
     "watch": "tsc -w",
-    "start": "node dist/index.js",
+    "start": "concurrently -k -p \"yarn prisma-generate\" \"yarn launch\"",
+    "launch": "node dist/index.js",
     "watch-node": "nodemon --experimental-specifier-resolution=node dist/index.js",
     "dev": "concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"yellow.bold,cyan.bold,green.bold\" \"yarn watch\" \"yarn watch-node\"",
     "watch:start": "tsc-watch --onSuccess \"node ./dist/index.js\"",
