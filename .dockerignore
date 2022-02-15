@@ -1,0 +1,7 @@
+# Put here files to be ingored when building docker image
+dist
+.gitignore
+.prettier*
+README.md
+node_modules
+.env
