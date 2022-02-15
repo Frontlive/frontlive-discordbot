@@ -15,6 +15,7 @@ processes = []
 [experimental]
   allowed_public_ports = []
   auto_rollback = true
+  cmd = "yarn start"
 
 [[services]]
   http_checks = []
