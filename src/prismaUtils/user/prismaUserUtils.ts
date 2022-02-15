@@ -1,8 +1,6 @@
-import { PrismaClient } from '@prisma/client';
+import { prisma } from '../prismaInstance';
 
 const addNewUserToDatabase = (discordId: string) => {
-  const prisma = new PrismaClient();
-
   return prisma.user.create({
     data: {
       discordId: discordId,
@@ -16,8 +14,6 @@ const addNewUserToDatabase = (discordId: string) => {
 };
 
 export const getUserWithStats = async (userDiscordId: string) => {
-  const prisma = new PrismaClient();
-
   return prisma.user.findUnique({
     where: {
       discordId: userDiscordId,
@@ -29,8 +25,6 @@ export const getUserWithStats = async (userDiscordId: string) => {
 };
 
 const updateUserThanksStat = (userDiscordId: string, thanksPoints: number) => {
-  const prisma = new PrismaClient();
-
   return prisma.user.update({
     where: {
       discordId: userDiscordId,

@@ -8,6 +8,8 @@ import { Args, ok } from '@sapphire/framework';
 import { addPointToUserThanksStats } from '../prismaUtils/user/prismaUserUtils';
 import { handleCommandUserErrors } from '../utils/handleCommandUserErrors';
 
+const commandChannelTarget = process.env.THANKS_MESSAGE_CHANNEL_TARGET_ID as string;
+
 @ApplyOptions<SubCommandPluginCommandOptions>({
   name: 'dzieki',
   aliases: ['dzięki'],
@@ -20,6 +22,7 @@ export class ThanksCommand extends SubCommandPluginCommand {
     try {
       const thanksUser = (await args.pick('member')).user.id;
       await addPointToUserThanksStats(thanksUser);
+      const targetChannel = message.guild?.channels.cache.get(commandChannelTarget);
       const thanksMessage = await getThanksMessage(args);
       const messageSource = message.url;
       const author = message.author.id;
@@ -30,7 +33,8 @@ export class ThanksCommand extends SubCommandPluginCommand {
         messageLink: messageSource,
         messageAuthor: author,
       });
-      return message.channel.send(content);
+      //@ts-ignore there is some problem with sapphire types i guess. For some reason TextChannel doesn't has send method
+      return targetChannel.send(content);
     } catch (e: any) {
       return message.channel.send(handleCommandUserErrors(e.identifier));
     }
