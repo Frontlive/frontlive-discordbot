@@ -12,7 +12,7 @@ import { inspect } from 'util';
 import { srcDir } from './constants';
 
 // Read env var
-config({ path: join(srcDir, '.env') });
+config({ path: join(srcDir, '../.env') });
 
 // Set default inspection depth
 inspect.defaultOptions.depth = 1;
