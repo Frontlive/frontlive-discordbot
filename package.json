@@ -24,9 +24,7 @@
     "dotenv-cra": "^3.0.2",
     "typescript": "^4.5.5",
     "nodemon": "^2.0.15",
-    "reflect-metadata": "^0.1.13"
-  },
-  "devDependencies": {
+    "reflect-metadata": "^0.1.13",
     "@sapphire/ts-config": "^3.1.8",
     "@types/node": "^17.0.10",
     "@types/ws": "^8.2.2",
