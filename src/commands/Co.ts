@@ -13,7 +13,7 @@ export class CoCommand extends SubCommandPluginCommand {
   public async messageRun(message: Message) {
     return message.channel.send({
       files: ['https://i.imgur.com/Jhng0EF.png'],
-      content: '',
+      content: 'CO XDDDD',
     });
   }
 }
