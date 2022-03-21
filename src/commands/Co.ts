@@ -11,9 +11,6 @@ import type { Message } from 'discord.js';
 })
 export class CoCommand extends SubCommandPluginCommand {
   public async messageRun(message: Message) {
-    return message.channel.send({
-      files: ['https://i.imgur.com/Jhng0EF.png'],
-      content: '',
-    });
+    return message.channel.send('https://i.imgur.com/Jhng0EF.png');
   }
 }
