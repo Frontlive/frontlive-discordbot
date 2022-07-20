@@ -7,7 +7,7 @@ import type { Message } from 'discord.js';
 
 @ApplyOptions<SubCommandPluginCommandOptions>({
   name: 'gryffindor',
-  description: 'Command to send Gryffindor meme',
+  description: 'Wysyła mema: Gryffindor!',
 })
 export class GryffindorCommand extends SubCommandPluginCommand {
   public async messageRun(message: Message) {
