@@ -7,7 +7,7 @@ import type { Message } from 'discord.js';
 
 @ApplyOptions<SubCommandPluginCommandOptions>({
   name: 'mufasa',
-  description: 'A command to send the dancing mufasa meme',
+  description: 'Wysyła tańczącego mufase',
 })
 export class MufasaCommand extends SubCommandPluginCommand {
   public async messageRun(message: Message) {
