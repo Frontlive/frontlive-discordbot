@@ -22,7 +22,7 @@ export class ThanksCommandReminder extends Listener {
       const isChannelParentCategoryTechnology = channel.parentId === TECHNOLOGY_CHANNEL_ID;
       if (isChannelParentCategoryTechnology) {
         message.channel.send(
-          'Nie zapomnij podziękować za pomocą !dzieki. Jako pierwszy argument oznacz użytkownika, któremu dziękujesz, a jako drugi jeżeli chcesz, wiadomość za co mu dziekujesz',
+          `<@${message.author.id}> Nie zapomnij podziękować za pomocą !dzieki. Jako pierwszy argument oznacz użytkownika, któremu dziękujesz, a jako drugi jeżeli chcesz, wiadomość za co mu dziekujesz`,
         );
       }
     }
