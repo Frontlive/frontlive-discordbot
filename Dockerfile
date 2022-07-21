@@ -1,10 +1,15 @@
-FROM node:16
+FROM node:16-alpine
 
 ENV NODE_ENV=production
 
 WORKDIR /app
+
+COPY package.json yarn.lock ./
+
+RUN yarn
+
 COPY . .
 
-RUN ["yarn"]
+RUN yarn run deploy
 
-CMD ["/bin/sh","-c", "yarn run deploy && yarn run start"]
+CMD ["/bin/sh","-c", "yarn run start"]
