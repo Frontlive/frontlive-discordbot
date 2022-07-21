@@ -2,7 +2,7 @@ import { Listener, SapphireClient } from '@sapphire/framework';
 import type { Message } from 'discord.js';
 
 const TECHNOLOGY_CHANNEL_ID = '878973710382530601';
-const BOT_CHANNEL_ID = '767878587365720074';
+const BOT_CHANNEL_ID = '943116275494838303';
 
 export class ThanksCommandReminder extends Listener {
   private readonly client: SapphireClient;
