@@ -2,7 +2,7 @@ import { Listener, SapphireClient } from '@sapphire/framework';
 import type { Message } from 'discord.js';
 
 const TECHNOLOGY_CHANNEL_ID = '878973710382530601';
-const BOT_CHANNEL_ID = '943116275494838303';
+const BOT_CHANNEL_ID = '767878587365720074';
 
 export class ThanksCommandReminder extends Listener {
   private readonly client: SapphireClient;
@@ -17,14 +17,16 @@ export class ThanksCommandReminder extends Listener {
   public async run(message: Message) {
     if (message.author.bot) return;
     const messageContent = message.content.toLowerCase();
-    if (messageContent.includes('dzieki') || messageContent.includes('dzięki')) {
-      const channel = await this.client.channels.fetch(message.channelId);
-      //@ts-ignore another shitty type from sapphire creators
-      const isChannelParentCategoryTechnology = channel.parentId === TECHNOLOGY_CHANNEL_ID;
-      if (isChannelParentCategoryTechnology || message.channelId === BOT_CHANNEL_ID) {
-        message.channel.send(
-          `<@${message.author.id}> Nie zapomnij podziękować za pomocą !dzieki. Jako pierwszy argument oznacz użytkownika, któremu dziękujesz, a jako drugi jeżeli chcesz, wiadomość za co mu dziekujesz`,
-        );
+    if (!message.content.includes('!dzieki') && !messageContent.includes('!dzięki')) {
+      if (messageContent.includes('dzieki') || messageContent.includes('dzięki')) {
+        const channel = await this.client.channels.fetch(message.channelId);
+        //@ts-ignore another shitty type from sapphire creators
+        const isChannelParentCategoryTechnology = channel.parentId === TECHNOLOGY_CHANNEL_ID;
+        if (isChannelParentCategoryTechnology || message.channelId === BOT_CHANNEL_ID) {
+          message.channel.send(
+            `<@${message.author.id}> Nie zapomnij podziękować za pomocą !dzieki. Jako pierwszy argument oznacz użytkownika, któremu dziękujesz, a jako drugi jeżeli chcesz, wiadomość za co mu dziekujesz`,
+          );
+        }
       }
     }
   }
