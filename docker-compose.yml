@@ -10,7 +10,7 @@ services:
       context: .
       dockerfile: ./Dockerfile
     # IMPORTANT: If you want to redeploy you will need to change the version number
-    image: frontlive-discord-bot:v.0.1.0
+    image: frontlive-discord-bot:v.0.1.1
 
     # Standard settings
     container_name: frontlive-discord-bot
