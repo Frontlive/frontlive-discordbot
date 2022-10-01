@@ -12,6 +12,7 @@ export const bot = new Client({
     IntentsBitField.Flags.GuildMessages,
     IntentsBitField.Flags.GuildMessageReactions,
     IntentsBitField.Flags.GuildVoiceStates,
+    IntentsBitField.Flags.GuildWebhooks,
   ],
   silent: true,
   simpleCommand: {
