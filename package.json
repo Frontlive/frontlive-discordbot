@@ -6,12 +6,12 @@
   "type": "module",
   "main": "dist/main.js",
   "scripts": {
-    "build": "tsc",
     "watch": "tsc -w",
     "start": "node dist/main.js",
     "watch-node": "nodemon --experimental-specifier-resolution=node dist/main.js",
     "dev": "concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"yellow.bold,cyan.bold,green.bold\" \"yarn watch\" \"yarn watch-node\"",
-    "format": "prettier --write \"src/**/*.ts\""
+    "format": "prettier --write \"src/**/*.ts\"",
+    "deploy": "tsc"
   },
   "dependencies": {
     "@discordx/importer": "^1.1.10",
