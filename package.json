@@ -1,50 +1,35 @@
 {
-  "name": "frontlive",
+  "name": "frontlive-bot",
   "version": "1.0.0",
-  "main": "dist/index.js",
-  "author": "@sapphire",
-  "license": "UNLICENSE",
-  "dependencies": {
-    "@discordjs/collection": "^0.4.0",
-    "@prisma/client": "^3.9.2",
-    "@sapphire/decorators": "^4.0.2",
-    "@sapphire/discord-utilities": "^2.6.0",
-    "@sapphire/discord.js-utilities": "^4.4.0",
-    "@sapphire/fetch": "^2.0.4",
-    "@sapphire/framework": "^2.3.0",
-    "@sapphire/plugin-api": "^3.1.3",
-    "@sapphire/plugin-editable-commands": "^1.1.3",
-    "@sapphire/plugin-logger": "^2.1.2",
-    "@sapphire/plugin-subcommands": "^2.1.3",
-    "@sapphire/time-utilities": "^1.5.2",
-    "@sapphire/type": "^2.1.2",
-    "@sapphire/utilities": "^3.2.1",
-    "concurrently": "^7.0.0",
-    "discord.js": "^13.6.0",
-    "dotenv-cra": "^3.0.2",
-    "typescript": "^4.5.5",
-    "nodemon": "^2.0.15",
-    "reflect-metadata": "^0.1.13",
-    "@sapphire/ts-config": "^3.1.8",
-    "@types/node": "^17.0.10",
-    "@types/ws": "^8.2.2",
-    "npm-run-all": "^4.1.5",
-    "prettier": "^2.5.1",
-    "prisma": "3.9.2",
-    "ts-node": "^10.5.0",
-    "tsc-watch": "^4.6.0"
-  },
+  "private": true,
+  "license": "MIT",
+  "type": "module",
+  "main": "dist/main.js",
   "scripts": {
-    "build": "tsc && yarn prisma-generate",
+    "build": "tsc",
     "watch": "tsc -w",
-    "start": "node dist/index.js",
-    "watch-node": "nodemon --experimental-specifier-resolution=node dist/index.js",
+    "start": "node dist/main.js",
+    "watch-node": "nodemon --experimental-specifier-resolution=node dist/main.js",
     "dev": "concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"yellow.bold,cyan.bold,green.bold\" \"yarn watch\" \"yarn watch-node\"",
-    "watch:start": "tsc-watch --onSuccess \"node ./dist/index.js\"",
-    "format": "prettier --write \"src/**/*.ts\"",
-    "prisma-generate": "prisma generate --schema=./src/prisma/schema.prisma",
-    "prisma-migrate": "prisma migrate dev --schema=./src/prisma/schema.prisma",
-    "deploy": "tsc && yarn prisma-generate && prisma migrate deploy --schema=./src/prisma/schema.prisma"
+    "format": "prettier --write \"src/**/*.ts\""
   },
-  "prettier": "./.prettierrc.json"
+  "dependencies": {
+    "@discordx/importer": "^1.1.10",
+    "@discordx/pagination": "^3.0.0",
+    "concurrently": "^7.0.0",
+    "discord.js": "^14.3.0",
+    "discordx": "^11.3.0"
+  },
+  "devDependencies": {
+    "@types/node": "^18.7.18",
+    "dotenv": "^16.0.2",
+    "nodemon": "^2.0.20",
+    "prettier": "^2.7.1",
+    "ts-node": "^10.9.1",
+    "typescript": "4.8.3"
+  },
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=7.0.0"
+  }
 }
