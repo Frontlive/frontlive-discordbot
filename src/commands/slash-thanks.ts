@@ -1,50 +1,46 @@
-import type { CommandInteraction, GuildMember, User } from "discord.js";
-import { ApplicationCommandOptionType, ChannelType } from "discord.js";
-import { Discord, Slash, SlashOption } from "discordx";
-const commandChannelTarget = process.env
-  .THANKS_MESSAGE_CHANNEL_TARGET_ID as string;
+import type { CommandInteraction, GuildMember } from 'discord.js';
+import { ApplicationCommandOptionType, ChannelType } from 'discord.js';
+import { Discord, Slash, SlashOption } from 'discordx';
+const commandChannelTarget = process.env.THANKS_MESSAGE_CHANNEL_TARGET_ID as string;
 
 @Discord()
 export class SlashThanks {
-  @Slash({ description: "Komenda do dziękowania za pomoc", name: "dzieki" })
+  @Slash({ description: 'Komenda do dziękowania za pomoc', name: 'dzieki' })
   async thanks(
     @SlashOption({
-      description: "Komu dziękujesz?",
-      name: "user",
+      description: 'Komu dziękujesz?',
+      name: 'user',
       required: true,
       type: ApplicationCommandOptionType.User,
     })
-    user: User | GuildMember,
+    user: GuildMember,
     @SlashOption({
-      description: "Za co dziękujesz? (Opcjonalnie)",
-      name: "treść",
+      description: 'Za co dziękujesz? (Opcjonalnie)',
+      name: 'treść',
       required: false,
       type: ApplicationCommandOptionType.String,
     })
     thanksMessage: string,
-    interaction: CommandInteraction
+    interaction: CommandInteraction,
   ): Promise<void> {
     try {
-      const targetChannel =
-        interaction.guild?.channels.cache.get(commandChannelTarget);
+      const targetChannel = interaction.guild?.channels.cache.get(commandChannelTarget);
       const messageSource = interaction.channel?.url;
       const author = interaction.member?.user.id;
       const content = prepareFinalMessage({
         userDiscordId: user.id,
         userThanksMessage: thanksMessage,
-        messageLink: messageSource || "",
-        messageAuthor: author || "",
+        messageLink: messageSource || '',
+        messageAuthor: author || '',
       });
       if (targetChannel?.type === ChannelType.GuildText) {
         targetChannel.send(content);
-        await interaction.reply(
-          `Podziękowałeś użytkownikowi ${user.client.user.username}!`
-        );
+        await interaction.reply(`Podziękowałeś użytkownikowi ${user.user.username}!`);
+        return;
       }
+      await interaction.reply('Zły kanał');
     } catch (e) {
-      await interaction.reply(
-        "Coś poszło nie tak. Admini pracują nad rozwiązaniem problemu!"
-      );
+      await interaction.reply('Coś poszło nie tak. Admini pracują nad rozwiązaniem problemu!');
     }
   }
 }
