@@ -1,7 +1,9 @@
 import type { CommandInteraction, GuildMember } from 'discord.js';
 import { ApplicationCommandOptionType, ChannelType } from 'discord.js';
 import { Discord, Slash, SlashOption } from 'discordx';
-const commandChannelTarget = process.env.THANKS_MESSAGE_CHANNEL_TARGET_ID as string;
+import { env } from '../config';
+
+const commandChannelTarget = env.THANKS_MESSAGE_CHANNEL_TARGET_ID;
 
 @Discord()
 export class SlashThanks {
