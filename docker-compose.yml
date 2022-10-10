@@ -10,7 +10,7 @@ services:
       context: .
       dockerfile: ./Dockerfile
     # IMPORTANT: If you want to redeploy you will need to change the version number
-    image: frontlive-discord-bot:v.1.0.6
+    image: frontlive-discord-bot:v.1.0.7
 
     # Standard settings
     container_name: frontlive-discord-bot
@@ -23,5 +23,15 @@ services:
       - DISCORD_TOKEN=${DISCORD_TOKEN}
       - OWNERS=${OWNERS}
       - THANKS_MESSAGE_CHANNEL_TARGET_ID=${THANKS_MESSAGE_CHANNEL_TARGET_ID}
+      - HTTP_HOST=${HTTP_HOST}
+      - HTTP_PORT=${HTTP_PORT}
+      - TWITCH_CLIENT_ID=${TWITCH_CLIENT_ID}
+      - TWITCH_ACCESS_TOKEN=${TWITCH_ACCESS_TOKEN}
+      - TWITCH_USER_ID=${TWITCH_USER_ID}
+      - TWITCH_NOTIFICATION_CHANNEL_ID=${TWITCH_NOTIFICATION_CHANNEL_ID}
+      - EVENTSUB_CALLBACK=${EVENTSUB_CALLBACK}
+      - EVENTSUB_SECRET=${EVENTSUB_SECRET}
       - DATABASE_URL=${DATABASE_URL}
 
+    ports:
+    - ${HTTP_PORT}:${HTTP_PORT}

@@ -2,8 +2,13 @@ import { dirname, importx } from '@discordx/importer';
 import type { Interaction, Message } from 'discord.js';
 import { IntentsBitField } from 'discord.js';
 import { Client } from 'discordx';
-import * as dotenv from 'dotenv';
-dotenv.config();
+import { env } from './config';
+import { createServer } from './http/http-server';
+import {
+  createSubscription,
+  deleteSubscription,
+  getSubscriptions,
+} from './services/eventsub.service';
 
 export const bot = new Client({
   intents: [
@@ -45,14 +50,26 @@ bot.on('messageCreate', (message: Message) => {
   bot.executeCommand(message);
 });
 
+const initSubscriptions = async () => {
+  const { data } = await getSubscriptions();
+
+  await Promise.all(
+    data.map(async ({ id }) => {
+      await deleteSubscription(id);
+    }),
+  );
+
+  await createSubscription('stream.online', { broadcaster_user_id: env.TWITCH_USER_ID });
+};
+
 async function run() {
+  const httpServer = await createServer();
+
   await importx(`${dirname(import.meta.url)}/{events,commands}/**/*.{ts,js}`);
 
-  if (!process.env.DISCORD_TOKEN) {
-    throw Error('Could not find DISCORD_TOKEN in your environment');
-  }
-
-  await bot.login(process.env.DISCORD_TOKEN);
+  await bot.login(env.DISCORD_TOKEN);
+  await httpServer.listen({ host: env.HTTP_HOST, port: env.HTTP_PORT });
+  await initSubscriptions();
 }
 
 run();
