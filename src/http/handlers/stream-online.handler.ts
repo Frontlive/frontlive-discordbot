@@ -14,7 +14,7 @@ const embed = new EmbedBuilder()
     Frontlive właśnie odpalił live na twitchu!
     https://www.twitch.tv/frontlivepl
 
-    ( <@&990548611739824188> )
+    ( <@&${env.TWITCH_NOTIFICATION_ROLE_ID}> )
     `,
   )
   .setColor(0x6441a5)
@@ -24,7 +24,7 @@ export const streamOnlineHandler = async () => {
   const channel = bot.channels.cache.get(env.TWITCH_NOTIFICATION_CHANNEL_ID);
 
   if (channel?.type === ChannelType.GuildText) {
-    await channel.send({ content: '<@&990548611739824188>', embeds: [embed] });
+    await channel.send({ content: `<@&${env.TWITCH_NOTIFICATION_ROLE_ID}>`, embeds: [embed] });
   }
 
   return '';
