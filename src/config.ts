@@ -13,6 +13,7 @@ export const env = cleanEnv(process.env, {
   TWITCH_ACCESS_TOKEN: str(),
   TWITCH_USER_ID: str(),
   TWITCH_NOTIFICATION_CHANNEL_ID: str(),
+  TWITCH_NOTIFICATION_ROLE_ID: str(),
   EVENTSUB_CALLBACK: url(),
   EVENTSUB_SECRET: str(),
   DATABASE_URL: str(),
