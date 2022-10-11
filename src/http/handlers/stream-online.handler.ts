@@ -10,12 +10,9 @@ const embed = new EmbedBuilder()
   .setTitle('Live na Twitchu')
   .setURL('https://www.twitch.tv/frontlivepl')
   .setDescription(
-    `
-    Frontlive właśnie odpalił live na twitchu!
-    https://www.twitch.tv/frontlivepl
-
-    ( <@&${env.TWITCH_NOTIFICATION_ROLE_ID}> )
-    `,
+    'Frontlive właśnie odpalił live na twitchu!\n' +
+      'https://www.twitch.tv/frontlivepl\n\n' +
+      `( <@&${env.TWITCH_NOTIFICATION_ROLE_ID}> )`,
   )
   .setColor(0x6441a5)
   .setTimestamp();
