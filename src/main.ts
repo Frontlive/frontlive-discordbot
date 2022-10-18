@@ -66,10 +66,10 @@ async function run() {
   const httpServer = await createServer();
 
   await importx(`${dirname(import.meta.url)}/{events,commands}/**/*.{ts,js}`);
-
   await bot.login(env.DISCORD_TOKEN);
   await httpServer.listen({ host: env.HTTP_HOST, port: env.HTTP_PORT });
-  await initSubscriptions();
+
+  initSubscriptions().catch(console.error);
 }
 
 run();
