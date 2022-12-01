@@ -15,7 +15,10 @@ const embed = new EmbedBuilder()
       `( <@&${env.TWITCH_NOTIFICATION_ROLE_ID}> )`,
   )
   .setColor(0x6441a5)
-  .setTimestamp();
+  .setTimestamp()
+  .setImage(
+    'https://cdn.discordapp.com/attachments/767878587365720074/1047944739879653426/sc-1.png',
+  );
 
 export const streamOnlineHandler = async () => {
   const channel = bot.channels.cache.get(env.TWITCH_NOTIFICATION_CHANNEL_ID);
