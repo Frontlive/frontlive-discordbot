@@ -10,7 +10,7 @@ export const env = cleanEnv(process.env, {
   HTTP_HOST: host(),
   HTTP_PORT: port(),
   TWITCH_CLIENT_ID: str(),
-  TWITCH_ACCESS_TOKEN: str(),
+  TWITCH_CLIENT_SECRET: str(),
   TWITCH_USER_ID: str(),
   TWITCH_NOTIFICATION_CHANNEL_ID: str(),
   TWITCH_NOTIFICATION_ROLE_ID: str(),

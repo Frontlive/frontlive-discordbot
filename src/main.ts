@@ -7,6 +7,7 @@ import { createServer } from './http/http-server';
 import {
   createSubscription,
   deleteSubscription,
+  generateAccessToken,
   getSubscriptions,
 } from './services/eventsub.service';
 
@@ -51,6 +52,7 @@ bot.on('messageCreate', (message: Message) => {
 });
 
 const initSubscriptions = async () => {
+  await generateAccessToken();
   const { data } = await getSubscriptions();
 
   await Promise.all(

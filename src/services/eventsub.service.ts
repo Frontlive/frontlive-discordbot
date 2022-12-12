@@ -5,9 +5,18 @@ const axiosInstance = axios.create({
   baseURL: 'https://api.twitch.tv/helix/eventsub/subscriptions',
   headers: {
     'Client-ID': env.TWITCH_CLIENT_ID,
-    Authorization: `Bearer ${env.TWITCH_ACCESS_TOKEN}`,
   },
 });
+
+export const generateAccessToken = async () => {
+  const { data } = await axios.post<AuthPayload>('https://id.twitch.tv/oauth2/token', {
+    client_id: env.TWITCH_CLIENT_ID,
+    client_secret: env.TWITCH_CLIENT_SECRET,
+    grant_type: 'client_credentials',
+  });
+
+  axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${data.access_token}`;
+};
 
 export const getSubscriptions = async () => {
   const { data } = await axiosInstance.get<Payload>('/');
@@ -52,4 +61,10 @@ interface Payload {
   max_total_cost: number;
   total_cost: number;
   pagination: unknown;
+}
+
+interface AuthPayload {
+  access_token: string;
+  expires_in: number;
+  token_type: string;
 }
